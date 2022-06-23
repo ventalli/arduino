@@ -1,11 +1,6 @@
 /*
-
   Esse projeto faz o LED emitir uma sequência de S.O.S 
   repetindo ela de forma permanente(loop).
-
-  Modificado em 7 de junho de 2015
-  por Vitor Mazuco (contato@vmzsolutions.com.br)
-
 */
 
 int ledPin = 13; // Uma variavél do pino digital 9 do nosso UNO.
