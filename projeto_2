@@ -1,0 +1,38 @@
+/*
+
+  Esse projeto faz o LED emitir uma sequência de S.O.S 
+  repetindo ela de forma permanente(loop).
+
+  Modificado em 7 de junho de 2015
+  por Vitor Mazuco (contato@vmzsolutions.com.br)
+
+*/
+
+int ledPin = 13; // Uma variavél do pino digital 9 do nosso UNO.
+int durations[] = {200, 200, 200, 500, 500, 500, 200, 200, 200}; // Um tipo de Arrays do tipo int (inteiro) contendo as durações. 
+
+void setup()                    // eecutado uma vez quando o sktech é iniciado
+{
+  pinMode(ledPin, OUTPUT);      // configurar o pino como saída
+}
+
+void loop()                     
+{
+  for (int i = 0; i < 9; i++)
+  {
+    flash(durations[i]);
+    if (i == 2)
+    {
+      delay(300);
+    }
+  }
+  delay(1000);                  
+}
+
+void flash(int duration)
+{
+  digitalWrite(ledPin, HIGH);
+  delay(duration);           
+  digitalWrite(ledPin, LOW);    
+  delay(duration);
+}
