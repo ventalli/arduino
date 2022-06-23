@@ -1,0 +1,77 @@
+/*
+  Esse código faz a execução do código morse em letras enviandas pelo painel erial mode do IDE do Arduino.
+
+  Modificado em 7 de junho de 2015
+  por Vitor Mazuco (contato@vmzsolutions.com.br)
+  www.vmzsolutions.com.br
+*/
+
+int ledPin = 13; // inicializa pelo pino digital 13
+
+char* letters[] = {
+  ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",    // A-I
+  ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",  // J-R
+  "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."          // S-Z
+};  // todo o alfabeto está traduzido aqui em código morse
+
+char* numbers[] = {"-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."}; // os números de 0-9 
+
+int dotDelay = 200; // duração de um ponto
+
+void setup()   // começo da programação(setup)   
+{
+  pinMode(ledPin, OUTPUT); // Modo saída do pino
+  Serial.begin(9600);    // uso do serial mode em velocidade de 9600 bauds
+}
+
+void loop()   // Começo do loop                 
+{
+  char ch;
+  if (Serial.available())      // há algo para ser lido pelo USB? 
+  {
+    ch = Serial.read();        // ler letra por letra de forma constante 
+    if (ch >= 'a' && ch <= 'z') // criamos uma variavél ch (character)
+    {
+      flashSequence(letters[ch - 'a']);
+    }
+    else if (ch >= 'A' && ch <= 'Z')
+    {
+      flashSequence(letters[ch - 'A']);
+    }
+    else if (ch >= '0' && ch <= '9')
+    {
+      flashSequence(numbers[ch - '0']);
+    }
+    else if (ch == ' ')
+    {
+     delay(dotDelay * 4);      // espaço entre palavras
+    }
+  }
+}
+
+void flashSequence(char* sequence)
+{
+   int i = 0;
+   while (sequence[i] != NULL)
+   {
+       flashDotOrDash(sequence[i]);
+       i++;
+   }
+   delay(dotDelay * 3);    // espaço entre palavras
+}
+
+void flashDotOrDash(char dotOrDash)
+{
+  digitalWrite(ledPin, HIGH);
+  if (dotOrDash == '.')
+  {
+    delay(dotDelay);           
+  }
+  else // deve ser um traço 
+  {
+    delay(dotDelay * 3);           
+  }
+  digitalWrite(ledPin, LOW);    
+  delay(dotDelay); // espaço entre flashes de luz
+}
+
