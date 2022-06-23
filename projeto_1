@@ -1,0 +1,20 @@
+/*
+  Esse projeto faz o LED emitir uma sequência de S.O.S 
+  repetindo ela de forma permanente(loop).
+*/
+
+
+int ledPin = 13;                // O LED está conectado na porta 13
+
+void setup()                    // O sketch começa
+{
+  pinMode(ledPin, OUTPUT);      // Configurando o pino como modo de saída
+}
+
+void loop()                     // Começa o loop
+{
+  digitalWrite(ledPin, HIGH);   // Ascende o LED
+  delay(200);                  // Espera 2 segundos
+  digitalWrite(ledPin, LOW);    // Apaga o LED
+  delay(200);                  // Espera 2 segundos
+}
