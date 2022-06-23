@@ -1,9 +1,5 @@
 /*
   Esse código faz a execução do código morse em letras enviandas pelo painel erial mode do IDE do Arduino.
-
-  Modificado em 7 de junho de 2015
-  por Vitor Mazuco (contato@vmzsolutions.com.br)
-  www.vmzsolutions.com.br
 */
 
 int ledPin = 13; // inicializa pelo pino digital 13
